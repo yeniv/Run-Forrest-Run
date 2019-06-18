@@ -1,0 +1,87 @@
+.about-popup {
+  // position: relative;
+  margin-top: 100px;
+}
+.modal-content {
+  color: rgb(70, 70, 70);
+  font-family: $fun-body;
+  font-weight: 800;
+  font-size: 15px;
+  border: none;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  // width: 700px;
+}
+
+.modal-header {
+  border: none;
+
+}
+.header-highlight {
+  background: #DC143C;
+  background: rgb(219,20,59);
+  background: linear-gradient(342deg, rgba(219,20,59,1) 0%, rgba(211,19,51,1) 100%);
+  padding: 3px 7px;
+  color: white;
+}
+.modal-body-text {
+  position: relative;
+  z-index: 10;
+  line-height: 30px;
+
+}
+
+.modal-content-container {
+  display: flex;
+}
+
+.modal-left-div {
+  background: linear-gradient(342deg, rgba(219,20,59,1) 0%, rgba(211,19,51,1) 100%);
+  width: 50%;
+  h1 {
+    font-size: 20px;
+    color: white;
+  }
+}
+.modal-div-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-right-div {
+  background-color: blue;
+  width: 50%;
+  padding: 20px;
+}
+
+
+.forrest-image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: url('forrest-gump-bench.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 150px;
+  z-index: 1px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: rgba(219,20,59,1);
+  font-weight: bold;
+  font-family: $fun-body;
+  font-weight: 800;
+  font-size: 26px;
+  right: 0;
+  &:hover {
+    color: #e2163c;
+    cursor: pointer;
+  }
+  &:focus {
+    outline: 0;
+  }
+}

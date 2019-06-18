@@ -1,0 +1,55 @@
+<div class="home-container">
+    <div class="home-container-left col-md-4">
+
+      <div class="home-header">
+        <h1>Ruuuun, Forrest! <br>
+        ruuuuuuuuuuun!</h1>
+        <p>Tweet <span class="url-highlight"><i class="fas fa-hashtag"></i>runforrestrun</span> and Forrest Gump <br>will run another mile across America.</p>
+        <div class="home-latest-tweets"><i class="fab fa-twitter"></i> latest tweets</div>
+      </div>
+
+      <div class="home-tweet-container">
+      <% @tweets.each do |tweet| %>
+        <div class="tweet-container tweet-animation">
+          <div class="tweet-avatar" style="background-image: url(<%= tweet.avatar %>) "></div>
+          <div class="tweet-content">
+            <div class="tweet-mile">
+              <i class="fas fa-location-arrow"></i> <%= number_with_delimiter(tweet.mile, :delimiter => ',') %>
+            </div>
+            <div>
+              <div class="tweet-flex">
+                <div class="tweet-name">
+                  <%= tweet.name %>&nbsp&nbsp
+                </div>
+                <div class="tweet-screen-name">
+                  @<%= tweet.screen_name %>&nbsp&nbsp
+                </div>
+                <div class="tweet-date">
+                  ·&nbsp&nbsp<%= time_ago_in_words(tweet.date) %> ago
+                </div>
+              </div>
+            </div>
+            <div class="tweet-message">
+              <%= auto_link(tweet.message).html_safe %>
+              <!-- <%= tweet.message %> -->
+            </div>
+            <% unless tweet.photo.blank? %>
+            <div class="tweet-photo" style="background-image: url(<%= tweet.photo %>)"></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="home-container-right col-md-8" id="map"
+         data-markers=""
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
+       <div id="distance-counter"><i class="fas fa-location-arrow"></i> <span class="current-distance"><%= number_with_delimiter(@distance_remaining, :delimiter => ',') %></span> miles to go</div>
+
+      <!-- launch about popup -->
+      <button type="button" class="home-about-btn" data-toggle="modal" data-target=".about-popup">
+        <i class="fas fa-lightbulb"></i> about
+      </button>
+    </div>
+</div>
