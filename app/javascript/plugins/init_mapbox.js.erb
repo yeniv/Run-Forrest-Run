@@ -49,16 +49,22 @@ map.on('load', function () {
   var el = document.createElement('div');
   el.className = 'marker';
 
+  // create popup
+  var popup = new mapboxgl.Popup({ offset: [-4, -42], className: 'forrest-popup' })
+    .setText('This is the first test!');
+
   // make a marker div and add to the map
   const forrestMarker = new mapboxgl.Marker(el, {anchor: 'bottom'})
   .setLngLat(turfRoutePosition.geometry.coordinates)
-  .addTo(map);
+  .addTo(map)
+  .setPopup(popup);
 
   // when a new tweet is created
   App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
     received: function(data) {
       // moves forrest marker
-      forrestMarker.setLngLat(turf.along(turfRoute, data.distance, {units: 'miles'}).geometry.coordinates)
+      const coordinates = turf.along(turfRoute, data.distance, {units: 'miles'}).geometry.coordinates
+      forrestMarker.setLngLat(coordinates)
 
       // sets tweet to push
       const newTweet = `
@@ -87,6 +93,14 @@ map.on('load', function () {
       ${data.photo === '' ? '' : `<div class="tweet-photo" style="background-image: url(${data.photo})"></div>`}
       </div>
       </div>`
+
+      // popup
+      if (popup.isOpen()) {
+        console.log("pop is open!")
+        forrestMarker.togglePopup()
+      }
+      //popup.setText("This is the 2nd test, yo!")
+      //forrestMarker.togglePopup()
 
       // pushes tweet
       const tweets = document.querySelector('.home-tweet-container')
