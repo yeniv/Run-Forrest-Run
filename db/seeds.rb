@@ -24,10 +24,12 @@ Tweet.add(Tweet.find_most_recent)
 
 puts 'Creating Tristan Viney super user...'
 
-User.create(
+super_user = User.new(
   email: 'tristanviney@gmail.com',
-  encrypted_password: '9riYfzTwg2nFWVeiXkV@TMdj@hm@.hQvBt',
+  password: '9riYfzTwg2nFWVeiXkV@TMdj@hm@.hQvBt',
   admin: true
 )
+
+super_user.save!
 
 puts 'Seeds successfully created!'
