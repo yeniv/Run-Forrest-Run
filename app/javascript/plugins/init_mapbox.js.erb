@@ -50,8 +50,8 @@ map.on('load', function () {
   el.className = 'marker';
 
   // create popup
-  var popup = new mapboxgl.Popup({ offset: [-4, -42], className: 'forrest-popup' })
-    .setText('This is the first test!');
+  var popup = new mapboxgl.Popup({ offset: [-4, -42], className: "forrest-popup" })
+    .setText(gon.forrest_quote);
 
   // make a marker div and add to the map
   const forrestMarker = new mapboxgl.Marker(el, {anchor: 'bottom'})
@@ -99,8 +99,11 @@ map.on('load', function () {
         console.log("pop is open!")
         forrestMarker.togglePopup()
       }
-      //popup.setText("This is the 2nd test, yo!")
-      //forrestMarker.togglePopup()
+      popup.setText(data.quote)
+      forrestMarker.togglePopup()
+
+      // map movement on update
+      // map.flyTo({center: coordinates, zoom: 6, speed: 0.5, curve: 1})
 
       // pushes tweet
       const tweets = document.querySelector('.home-tweet-container')
