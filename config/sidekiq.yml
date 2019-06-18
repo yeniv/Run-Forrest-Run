@@ -1,3 +1,7 @@
+:concurrency: 3
+:timeout: 60
+:verbose: true
+
 :schedule:
   search_tweets_job:
     every: ['25s', first_in: '0s']
