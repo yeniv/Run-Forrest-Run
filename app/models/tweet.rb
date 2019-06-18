@@ -95,7 +95,8 @@ class Tweet < ApplicationRecord
                                      date: tweet[:created_at],
                                      tweet_id: tweet[:id],
                                      photo: photo_url,
-                                     mile: Tweet.count
+                                     mile: Tweet.count,
+                                     quote: forrest.quotes.sample
       end
     end
   end

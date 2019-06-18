@@ -1,8 +1,9 @@
-require 'mapbox-sdk'
+# require 'mapbox-sdk'
 
 class ForrestGump < ApplicationRecord
   has_many :tweets
   serialize :route, Array
+  serialize :quotes, Array
 
   def self.route
     Mapbox.access_token = ENV['MAPBOX_API_KEY']
