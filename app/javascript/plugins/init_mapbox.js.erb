@@ -1,0 +1,101 @@
+import mapboxgl from 'mapbox-gl';
+import { timeSince } from './time_since.js';
+import { formatNumber } from './format_number.js';
+
+
+const runningRoute = gon.running_route
+let forrestDistance = gon.running_distance;
+let turfRoute = turf.lineString(runningRoute);
+let turfRoutePosition = turf.along(turfRoute, forrestDistance, {units: 'miles'});
+
+
+const mapElement = document.getElementById('map');
+mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: [-95.976991, 35.6122],
+  zoom: 3.7
+});
+
+// sets route
+map.on('load', function () {
+  map.addLayer({
+    "id": "route",
+    "type": "line",
+    "source": {
+      "type": "geojson",
+      "data": {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "LineString",
+          "coordinates": runningRoute
+        }
+      }
+    },
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": '#DC143C',
+      "line-width": 1.5,
+      'line-dasharray': [1.2, 3],
+    }
+  });
+
+  // creates div element (styled in home.sccs)
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker div and add to the map
+  const forrestMarker = new mapboxgl.Marker(el, {anchor: 'bottom'})
+  .setLngLat(turfRoutePosition.geometry.coordinates)
+  .addTo(map);
+
+  // when a new tweet is created
+  App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
+    received: function(data) {
+      // moves forrest marker
+      forrestMarker.setLngLat(turf.along(turfRoute, data.distance, {units: 'miles'}).geometry.coordinates)
+
+      // sets tweet to push
+      const newTweet = `
+      <div class="tweet-container tweet-animation">
+      <div class="tweet-avatar" style="background-image: url(${data.avatar}) "></div>
+      <div class="tweet-content">
+      <div class="tweet-mile">
+        <i class="fas fa-location-arrow"></i> ${formatNumber(data.mile)}
+      </div>
+      <div>
+      <div class="tweet-flex">
+      <div class="tweet-name">
+      ${data.name}&nbsp&nbsp
+      </div>
+      <div class="tweet-screen-name">
+      @${data.screen_name}&nbsp&nbsp
+      </div>
+      <div class="tweet-date">
+      ·&nbsp&nbsp ${timeSince(data.date)} ago
+      </div>
+      </div>
+      </div>
+      <div class="tweet-message">
+      ${data.message}
+      </div>
+      ${data.photo === '' ? '' : `<div class="tweet-photo" style="background-image: url(${data.photo})"></div>`}
+      </div>
+      </div>`
+
+      // pushes tweet
+      const tweets = document.querySelector('.home-tweet-container')
+      tweets.insertAdjacentHTML("afterbegin", newTweet);
+
+      // updates distance remaining
+      const distance = document.querySelector(".current-distance")
+      distance.innerText = formatNumber(parseInt(data.distance_remaining))
+    }
+  })
+});
