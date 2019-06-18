@@ -15,7 +15,7 @@ puts 'Creating Forrest Gump...'
 ForrestGump.create(
   name: 'Forrest Gump',
   distance: 0,
-  route: '[[-85.976991, 32.6122],
+  route:  [[-85.976991, 32.6122],
            [-86.490478, 32.431067],
            [-87.753724, 32.511142],
            [-90.14244, 32.265668],
@@ -330,7 +330,7 @@ ForrestGump.create(
            [-109.661169, 36.772315],
            [-109.608602, 37.246146],
            [-109.990753, 37.101495]
-         ]'
+         ]
       )
 
 puts 'Adding most recent #runforrestrun tweet...'

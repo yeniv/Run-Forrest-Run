@@ -31,7 +31,7 @@ end
 
 # my gems
 gem 'gon'
-gem 'mapbox-sdk'
+# gem 'mapbox-sdk'
 gem 'twitter', '~> 6.2'
 gem 'twitter-text'
 gem 'sidekiq-scheduler'
