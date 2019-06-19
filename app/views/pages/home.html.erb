@@ -48,8 +48,48 @@
        <div id="distance-counter"><i class="fas fa-location-arrow"></i> <span class="current-distance"><%= number_with_delimiter(@distance_remaining, :delimiter => ',') %></span> miles to go</div>
 
       <!-- launch about popup -->
-      <button type="button" class="home-about-btn" data-toggle="modal" data-target=".about-popup">
+      <button type="button" id="myBtn" class="home-about-btn" data-toggle="modal" data-target=".about-popup">
         <i class="fas fa-lightbulb"></i> about
       </button>
     </div>
+</div>
+
+<!-- modal popup -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-split-left">
+        <%= image_tag("run.gif", class: "modal-gif") %>
+      </div>
+      <div class="modal-split-right">
+
+        <span class="modal-close">&times;</span>
+
+
+        <div class="modal-forrest-icon"></div>
+
+        <p>
+          In 1979, Forrest Gump started running.
+          <br>
+          When he got tired, he slept.
+          <br>
+          When he got hungry, he ate.
+          <br>
+          When he had to go, you know, he went.
+          <br>
+          3 years, 2 months, 14 days, and 16 hours later, he stopped... and went home.
+          <br>
+          He'd run 13,089 miles.
+          <br>
+          How long will it take the internet to do it again?
+        </p>
+
+        <a href="http://tristanviney.com" target="blank">
+          <div class="modal-button">
+            <i class="fas fa-bolt"></i> Built by Tristan
+          </div>
+        </a>
+      </div>
+    </div>
+</div>
 </div>

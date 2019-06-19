@@ -40,7 +40,7 @@ ForrestGump.create(
     'I was a celebrity. I was even more famous-er than Captain Kangaroo',
     'I’m sorry I ruined your New’s Year’s Eve party Lieutenant Dan... she tasted like cigarettes.',
     'He didn’t like to be called crippled, just like I didn’t like being called stupid.',
-    'So I went... again.  And I met the President of the United States again.',
+    'So I went... again. And I met the President of the United States again.',
     'But you don’t got no legs Lieutenant Dan',
     'Bubba Gump Shrimp... it’s a household name',
     'Yes sir, we got more money than Davey Crockett',
