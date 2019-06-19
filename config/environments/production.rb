@@ -94,4 +94,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.serve_static_assets = true
+
+  config.web_socket_server_url = "wss://run-forrest-run.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://run-forrest-run.herokuapp.com', 'http://run-forrest-run.herokuapp.com']
 end
