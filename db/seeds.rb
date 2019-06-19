@@ -375,7 +375,7 @@ puts 'Creating Tristan Viney super user...'
 
 super_user = User.new(
   email: 'tristanviney@gmail.com',
-  password: '9riYfzTwg2nFWVeiXkV@TMdj@hm@.hQvBt',
+  password: 'runforrestrun88',
   admin: true
 )
 
