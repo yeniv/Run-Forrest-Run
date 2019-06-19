@@ -15,6 +15,7 @@ puts 'Creating Forrest Gump...'
 ForrestGump.create(
   name: 'Forrest Gump',
   distance: 0,
+  starting_position: 'left',
   quotes: [
     'She said they was my magic shoes',
     'My momma always said that life was like a box of chocolates…you never know what you’re gonna get',

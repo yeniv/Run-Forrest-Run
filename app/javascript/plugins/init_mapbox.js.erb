@@ -47,7 +47,7 @@ map.on('load', function () {
 
   // creates div element (styled in home.sccs)
   var el = document.createElement('div');
-  el.className = 'marker marker-left';
+  el.className = `marker marker-${gon.starting_position}`;
 
   // create popup
   var popup = new mapboxgl.Popup({ offset: [-4, -42], className: "forrest-popup" })
@@ -63,14 +63,6 @@ map.on('load', function () {
   App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
     received: function(data) {
 
-      $.ajax({
-        url: '/direction/:left',
-        type: 'post',
-        authenticity_token: true,
-        dataType:'text',
-        data: "authenticity_token="+AUTH_TOKEN
-      })
-
       // sets old latitude
       const oldLat = forrestMarker.getLngLat().lng
 
@@ -84,9 +76,33 @@ map.on('load', function () {
       if (oldLat > newLat) {
         el.classList.remove('marker-right')
         el.classList.add('marker-left')
-      } else {
+
+        console.log('face left')
+        console.log(`oldLat: ${oldLat}`)
+        console.log(`newLat: ${newLat}`)
+
+        $.ajax({
+            type: 'POST',
+            url: "/direction/left",
+            authenticity_token: true,
+            headers: { 'X-CSRF-Token': Rails.csrfToken() },
+        });
+        }
+
+      if (newLat > oldLat) {
         el.classList.remove('marker-left')
         el.classList.add('marker-right')
+
+        console.log('face left')
+        console.log(`oldLat: ${oldLat}`)
+        console.log(`newLat: ${newLat}`)
+
+        $.ajax({
+            type: 'POST',
+            url: "/direction/right",
+            authenticity_token: true,
+            headers: { 'X-CSRF-Token': Rails.csrfToken() },
+        });
       }
 
       // sets tweet to push

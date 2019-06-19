@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  post '/direction/:direction', to: 'pages#direction'
+  post 'direction/:direction', to: 'pages#direction'
 end
