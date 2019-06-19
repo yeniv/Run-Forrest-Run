@@ -1,6 +1,3 @@
-//= require jquery
-//= require jquery_ujs
-
 import "bootstrap";
 
 import 'mapbox-gl/dist/mapbox-gl.css';

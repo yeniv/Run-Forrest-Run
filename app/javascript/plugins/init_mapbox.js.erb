@@ -70,16 +70,12 @@ map.on('load', function () {
       const coordinates = turf.along(turfRoute, data.distance, {units: 'miles'}).geometry.coordinates
       forrestMarker.setLngLat(coordinates)
 
-      // sets marker image direction
+      // sets marker image direction & saves to db
       const newLat = forrestMarker.getLngLat().lng
 
       if (oldLat > newLat) {
         el.classList.remove('marker-right')
         el.classList.add('marker-left')
-
-        console.log('face left')
-        console.log(`oldLat: ${oldLat}`)
-        console.log(`newLat: ${newLat}`)
 
         $.ajax({
             type: 'POST',
@@ -92,10 +88,6 @@ map.on('load', function () {
       if (newLat > oldLat) {
         el.classList.remove('marker-left')
         el.classList.add('marker-right')
-
-        console.log('face left')
-        console.log(`oldLat: ${oldLat}`)
-        console.log(`newLat: ${newLat}`)
 
         $.ajax({
             type: 'POST',
@@ -135,7 +127,6 @@ map.on('load', function () {
 
       // popup quote
       if (popup.isOpen()) {
-        console.log("pop is open!")
         forrestMarker.togglePopup()
       }
       popup.setText(data.quote)
