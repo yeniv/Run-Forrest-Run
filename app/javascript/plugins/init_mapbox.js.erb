@@ -65,7 +65,10 @@ map.on('load', function () {
 
       $.ajax({
         url: '/direction/:left',
-        type: 'post'
+        type: 'post',
+        authenticity_token: true,
+        dataType:'text',
+        data: "authenticity_token="+AUTH_TOKEN
       })
 
       // sets old latitude
