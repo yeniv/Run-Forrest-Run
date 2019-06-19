@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     gon.running_distance = forrest.distance
     gon.forrest_quote = forrest.quotes.sample
 
-    @distance_remaining = 15_248 - ForrestGump.last.distance
+    @distance_remaining = forrest.route_distance - forrest.distance
     @tweets = Tweet.all.sort { |a, b| b.mile <=> a.mile }.first(50)
     # @tweets = Tweet.all.reverse.first(50)
   end

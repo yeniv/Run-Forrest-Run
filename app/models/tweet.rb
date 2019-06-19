@@ -87,7 +87,7 @@ class Tweet < ApplicationRecord
         forrest.save!
         ActionCable.server.broadcast 'web_notifications_channel',
                                      distance: forrest.distance,
-                                     distance_remaining: (15_248 - forrest.distance),
+                                     distance_remaining: (forrest.route_distance - forrest.distance),
                                      name: tweet[:user][:name],
                                      screen_name: tweet[:user][:screen_name],
                                      message: Tweet.link(message),
