@@ -50,7 +50,7 @@ map.on('load', function () {
   el.className = `marker marker-${gon.starting_position}`;
 
   // create popup
-  var popup = new mapboxgl.Popup({ offset: [-4, -42], className: "forrest-popup" })
+  var popup = new mapboxgl.Popup({ offset: [0, -42], className: "forrest-popup" })
     .setText(gon.forrest_quote);
 
   // make a marker div and add to the map
