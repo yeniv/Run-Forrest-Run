@@ -138,10 +138,18 @@
 }
 
 .marker {
-  background-image: image-url('forrest_marker_l.gif');
   background-size: cover;
   background-repeat: no-repeat;
   width: 45px;
   height: 45px;
   // cursor: pointer;
 }
+.marker-left {
+  background-image: image-url('forrest_marker_l.gif');
+}
+.marker-right {
+  background-image: image-url('forrest_marker_r.gif');
+
+}
+
+
