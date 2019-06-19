@@ -15,8 +15,11 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v9',
   center: [-95.976991, 35.6122],
-  zoom: 3.7
+  zoom: 3.8,
+  pitch: 25
 });
+
+let bearingSkew
 
 // sets route
 map.on('load', function () {
@@ -77,6 +80,8 @@ map.on('load', function () {
         el.classList.remove('marker-right')
         el.classList.add('marker-left')
 
+        bearingSkew = -18
+
         $.ajax({
             type: 'POST',
             url: "/direction/left",
@@ -88,6 +93,8 @@ map.on('load', function () {
       if (newLat > oldLat) {
         el.classList.remove('marker-left')
         el.classList.add('marker-right')
+
+        bearingSkew = 18
 
         $.ajax({
             type: 'POST',
@@ -139,6 +146,15 @@ map.on('load', function () {
       // updates distance remaining
       const distance = document.querySelector(".current-distance")
       distance.innerText = formatNumber(parseInt(data.distance_remaining))
+
+      // map animation
+      map.flyTo({
+        center: coordinates,
+        zoom: 5.5,
+        bearing: bearingSkew,
+        speed: 0.2
+      });
+      // map.panTo(coordinates)
     }
   })
 });
