@@ -55,7 +55,7 @@ class Tweet < ApplicationRecord
 
     forrest = ForrestGump.last
 
-    params.each do |tweet|
+    params.reverse_each do |tweet|
       if tweet[:entities][:media].nil?
         photo_url = ''
       else
