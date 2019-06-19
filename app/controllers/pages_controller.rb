@@ -12,4 +12,8 @@ class PagesController < ApplicationController
     @tweets = Tweet.all.sort { |a, b| b.mile <=> a.mile }.first(50)
     # @tweets = Tweet.all.reverse.first(50)
   end
+
+  def direction
+    flash.now[:notice] = params[:direction]
+  end
 end

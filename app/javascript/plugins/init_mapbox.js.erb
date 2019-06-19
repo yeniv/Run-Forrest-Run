@@ -40,14 +40,14 @@ map.on('load', function () {
     },
     "paint": {
       "line-color": '#DC143C',
-      "line-width": 1.5,
+      "line-width": 1.6,
       'line-dasharray': [1.2, 3],
     }
   });
 
   // creates div element (styled in home.sccs)
   var el = document.createElement('div');
-  el.className = 'marker marker-left';  console.log(el.classList)
+  el.className = 'marker marker-left';
 
   // create popup
   var popup = new mapboxgl.Popup({ offset: [-4, -42], className: "forrest-popup" })
@@ -62,9 +62,29 @@ map.on('load', function () {
   // when a new tweet is created
   App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
     received: function(data) {
+
+      $.ajax({
+        url: '/direction/:left',
+        type: 'post'
+      })
+
+      // sets old latitude
+      const oldLat = forrestMarker.getLngLat().lng
+
       // moves forrest marker
       const coordinates = turf.along(turfRoute, data.distance, {units: 'miles'}).geometry.coordinates
       forrestMarker.setLngLat(coordinates)
+
+      // sets marker image direction
+      const newLat = forrestMarker.getLngLat().lng
+
+      if (oldLat > newLat) {
+        el.classList.remove('marker-right')
+        el.classList.add('marker-left')
+      } else {
+        el.classList.remove('marker-left')
+        el.classList.add('marker-right')
+      }
 
       // sets tweet to push
       const newTweet = `
@@ -94,16 +114,13 @@ map.on('load', function () {
       </div>
       </div>`
 
-      // popup
+      // popup quote
       if (popup.isOpen()) {
         console.log("pop is open!")
         forrestMarker.togglePopup()
       }
       popup.setText(data.quote)
       forrestMarker.togglePopup()
-
-      // map movement on update
-      // map.flyTo({center: coordinates, zoom: 6, speed: 0.5, curve: 1})
 
       // pushes tweet
       const tweets = document.querySelector('.home-tweet-container')
