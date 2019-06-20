@@ -3,7 +3,10 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 180px; /* Location of the box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -17,7 +20,7 @@
 .modal-content {
   font-family: $fun-body;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 13.5px;
   line-height: 21px;
   color: rgb(70, 70, 70);
   position: relative;
@@ -93,7 +96,7 @@
 .modal-split-right {
   width: 50%;
   text-align: center;
-  padding: 35px;
+  padding: 25px;
   // padding-top: 50px
   a {
     text-decoration: none;
