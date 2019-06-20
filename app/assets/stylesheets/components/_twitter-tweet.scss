@@ -79,6 +79,14 @@
   border-radius: 10px;
   border: 1px solid rgb(230, 230, 230);
 }
+.tweet-photo-animated {
+  margin-top: 5px;
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgb(230, 230, 230);
+}
 
 .tweet-animation {
   animation-duration: 1s;

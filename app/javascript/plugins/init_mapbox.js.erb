@@ -62,6 +62,15 @@ map.on('load', function () {
   .addTo(map)
   .setPopup(popup);
 
+  console.log(turfRoutePosition.geometry.coordinates)
+
+  // if small screen, fly to marker
+  if (window.innerWidth <= 768) {
+    map.panTo(turfRoutePosition.geometry.coordinates, {zoom: 4.2})
+        // speed: 0.2
+    console.log('less than 768!')
+  }
+
   // when a new tweet is created
   App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
     received: function(data) {
