@@ -154,7 +154,17 @@
     width: 165px;
     font-size: 13px;
     padding: 5px;
-}
+  }
+  .modal-content {
+    width: 90%;
+    font-size: 13px;
+  }
+  .modal-split-left {
+    display: none;
+  }
+  .modal-split-right {
+  width: 100%;
+  }
 }
 
 
