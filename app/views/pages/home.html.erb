@@ -34,7 +34,8 @@
               <!-- <%= tweet.message %> -->
             </div>
             <% unless tweet.photo.blank? %>
-            <div class="tweet-photo" style="background-image: url(<%= tweet.photo %>)"></div>
+            <!-- <div class="tweet-photo" style="background-image: url(<%= tweet.photo %>)"></div> -->
+            <%= image_tag(tweet.photo, class: "tweet-photo-animated") %>
             <% end %>
           </div>
         </div>
