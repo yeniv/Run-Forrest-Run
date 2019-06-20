@@ -18,7 +18,7 @@
   font-family: $fun-body;
   font-weight: 800;
   font-size: 15px;
-  line-height: 34px;
+  line-height: 21px;
   color: rgb(70, 70, 70);
   position: relative;
   background-color: #white;
@@ -38,6 +38,9 @@
     line-height: 34px;
     // padding-bottom: 30px;
   }
+}
+.modal-bold {
+  color: rgb(120, 120, 120);
 }
 
 /* Add Animation */
