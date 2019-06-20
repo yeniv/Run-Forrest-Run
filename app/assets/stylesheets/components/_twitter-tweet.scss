@@ -20,6 +20,7 @@
   text-align: left;
   width: 100%;
 }
+
 .tweet-mile {
   text-align: center;
   border-radius: 0 1px 0 1px;
@@ -42,7 +43,9 @@
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  min-width: 50px
+  min-width: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .tweet-flex {
@@ -61,7 +64,6 @@
 .tweet-date {
   color: #657786;
   font-weight: 600;
-  // text-align: right;
   flex-grow: 1;
 }
 
