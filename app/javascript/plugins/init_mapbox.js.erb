@@ -14,8 +14,8 @@ mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v9',
-  center: [-95.976991, 35.6122],
-  zoom: 3.8,
+  center: turfRoutePosition.geometry.coordinates,
+  zoom: 4.2,
   pitch: 25,
 });
 
@@ -61,15 +61,6 @@ map.on('load', function () {
   .setLngLat(turfRoutePosition.geometry.coordinates)
   .addTo(map)
   .setPopup(popup);
-
-  console.log(turfRoutePosition.geometry.coordinates)
-
-  // if small screen, fly to marker
-  if (window.innerWidth <= 768) {
-    map.panTo(turfRoutePosition.geometry.coordinates, {zoom: 4.2})
-        // speed: 0.2
-    console.log('less than 768!')
-  }
 
   // when a new tweet is created
   App.messages = App.cable.subscriptions.create('WebNotificationsChannel', {
@@ -159,7 +150,7 @@ map.on('load', function () {
       // map animation
       map.flyTo({
         center: coordinates,
-        zoom: 5.5,
+        zoom: 5.8,
         bearing: bearingSkew,
         speed: 0.2
       });
