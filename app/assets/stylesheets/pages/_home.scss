@@ -130,6 +130,11 @@
   background-image: image-url('forrest_marker_r.gif');
 
 }
+@media (max-width: 992px) {
+  .modal-content {
+    width: 75%;
+  }
+}
 
 // below md (768px)
 @media (max-width: 768px) {
