@@ -18,7 +18,6 @@
     line-height: 26px;
   }
 }
-
 .url-highlight {
   background: #DC143C;
   background: rgb(219,20,59);
@@ -26,7 +25,6 @@
   padding: 3px 7px;
   color: white;
 }
-
 .home-latest-tweets {
   border-radius: 20px;
   background: rgb(219,20,59);
@@ -42,7 +40,6 @@
   margin: 0 auto;
   margin-bottom: -35px;
 }
-
 .home-container {
   width: 100%;
   display: flex;
@@ -64,8 +61,6 @@
 .home-header {
   padding-bottom: 20px;
 }
-.home-tweet-container {
-}
 #map {
   position: sticky;
 }
@@ -85,7 +80,6 @@
   font-weight: 800;
   font-size: 15px;
 }
-
 .home-about-btn {
   position: absolute;
   right: 0;
@@ -113,10 +107,6 @@
     outline: 0;
   }
 }
-
-.current-distance {
-}
-
 .marker {
   background-size: cover;
   background-repeat: no-repeat;
@@ -128,15 +118,14 @@
 }
 .marker-right {
   background-image: image-url('forrest_marker_r.gif');
-
 }
+
 @media (max-width: 992px) {
   .modal-content {
     width: 75%;
   }
 }
 
-// below md (768px)
 @media (max-width: 768px) {
   .home-container {
     display: inline-block;
