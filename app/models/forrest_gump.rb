@@ -1,5 +1,3 @@
-# require 'mapbox-sdk'
-
 class ForrestGump < ApplicationRecord
   has_many :tweets
   serialize :route, Array
@@ -34,4 +32,3 @@ class ForrestGump < ApplicationRecord
     route_coordinates.flatten(1)
   end
 end
-

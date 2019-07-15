@@ -56,6 +56,8 @@ class Tweet < ApplicationRecord
     forrest = ForrestGump.last
 
     params.reverse_each do |tweet|
+      next if tweet[:user][:screen_name] == 'runforrestrunb1' # block forrest gump booster account
+
       if tweet[:entities][:media].nil?
         photo_url = ''
       else
